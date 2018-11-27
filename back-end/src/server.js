@@ -1,24 +1,19 @@
 require('dotenv').config()
 const express = require('express')
-const axios = require('axios')
 const cors = require('cors')
+const bodyParser = require('body-parser')
 
-const helpers = require('./helpers')
+const recipientController = require('./controller/recipient')
+const authController = require('./controller/auth')
 
 const app = express()
 
 app.use(cors())
+app.use(bodyParser.json())
 
-app.get('/recipients', (req, res) => {
-	const url = helpers.mountURL('/recipients')
-  axios.get(url)
-  	.then((response) => {
-  		res.status(response.status).send(response.data)
-  	})
-  	.catch((error) => {
-  		res.status(error.response.status).send(error.response.data)
-  	})
-})
+app.post('/login', authController.login)
+
+app.get('/recipients', recipientController.getRecipients)
 
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!')
