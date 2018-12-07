@@ -12,7 +12,7 @@
     "jsonwebtoken": "^8.3.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.7"
   },
   "scripts": {
     "start": "nodemon src/server.js"

@@ -1,0 +1,22 @@
+version: '3'
+services:
+  api:
+    container_name: 'my_api'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /code
+    volumes:
+      - ./:/code
+      - /code/node_modules
+    environment:
+      - NODE_ENV=development
+    expose:
+      - 3000
+    # ports:
+      # - 3000:3000
+    command: "npm start"
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:3000/status"]
+    #   interval: 10s
+    #   retries: 5
