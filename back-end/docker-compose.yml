@@ -13,10 +13,29 @@ services:
       - NODE_ENV=development
     expose:
       - 3000
-    # ports:
-      # - 3000:3000
+    ports:
+      - 3000:3000
     command: "npm start"
     # healthcheck:
     #   test: ["CMD", "curl", "-f", "http://localhost:3000/status"]
     #   interval: 10s
     #   retries: 5
+    networks:
+      - application
+  
+  postgres:
+    container_name: 'database'
+    image: postgres:10
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: abc12345678
+    networks:
+      - application
+    expose:
+      - 5432
+    # ports:
+    #   - 5432:5432
+
+networks:
+  application:
