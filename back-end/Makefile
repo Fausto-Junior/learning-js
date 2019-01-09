@@ -8,3 +8,6 @@ start-db:
 
 stop:
 	@docker-compose stop
+
+migrate:
+	@docker-compose run --rm api npm run migrate
